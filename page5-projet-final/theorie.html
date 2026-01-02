@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet Final – Théorie</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Projet Final – Théorie</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="projet.html">Projet</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Architecture MVC</h2>
+    <p>Le projet utilise l’architecture MVC pour séparer la logique de gestion des données (models), les routes (controllers) et les endpoints (routes).</p>
+  </section>
+
+  <section>
+    <h2>Bases de données</h2>
+    <ul>
+      <li>MySQL direct avec `mysql2/promise` pour requêtes SQL classiques</li>
+      <li>Sequelize pour ORM et simplification des relations</li>
+      <li>MongoDB avec Mongoose pour un stockage NoSQL flexible</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Endpoints REST</h2>
+    <p>Chaque ressource (User, Project) aura ses endpoints : GET, POST, PUT, DELETE. Les entrées seront validées et les erreurs correctement gérées.</p>
+  </section>
+
+  <section>
+    <h2>Validation & sécurité</h2>
+    <p>Les données envoyées par le client doivent être vérifiées. Les codes HTTP corrects seront renvoyés pour signaler succès, erreur client ou erreur serveur.</p>
+  </section>
+
+  <section>
+    <h2>Test & Postman</h2>
+    <p>Chaque route sera testée avec Postman pour s’assurer de la conformité et de la cohérence des résultats.</p>
+  </section>
+</main>
+</body>
+</html>

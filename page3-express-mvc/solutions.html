@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 – Solutions</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 3 – Solutions</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Solution Exercice 1</h2>
+    <pre><code>import express from 'express';
+const app = express();
+app.get('/hello', (req,res)=> res.send('Hello Express!'));
+app.listen(3000);</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 2</h2>
+    <pre><code>app.post('/user', (req,res)=>{
+  const user = req.body;
+  res.json({status:'ok', user});
+});</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 3</h2>
+    <pre><code>// controllers/hello.controller.js
+export const sayHello = (req,res)=> res.send('Hello Express!');
+
+// routes/hello.routes.js
+import express from 'express';
+import { sayHello } from '../controllers/hello.controller.js';
+const router = express.Router();
+router.get('/hello', sayHello);
+export default router;</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 4</h2>
+    <pre><code>import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String
+});
+
+export default mongoose.model('User', userSchema);</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 5</h2>
+    <p>Ouvrez Postman, envoyez une requête GET sur `/hello` et POST sur `/user` avec un JSON pour tester le serveur.</p>
+  </section>
+</main>
+</body>
+</html>

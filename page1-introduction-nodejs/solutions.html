@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 – Solutions</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 1 – Solutions</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Solution Exercice 1</h2>
+    <pre><code>console.log("Bonjour Node.js !");</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 2</h2>
+    <pre><code>// math.js
+function multiply(a, b) {
+  return a * b;
+}
+module.exports = { multiply };
+
+// app.js
+const { multiply } = require('./math.js');
+console.log(multiply(3, 4)); // 12
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 3</h2>
+    <pre><code>// math.mjs
+export function multiply(a, b) {
+  return a * b;
+}
+
+// app.mjs
+import { multiply } from './math.mjs';
+console.log(multiply(3, 4)); // 12
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 4</h2>
+    <pre><code>// .env
+APP_NAME=NodeBootcamp
+
+// index.js
+import 'dotenv/config';
+console.log(process.env.APP_NAME); // NodeBootcamp
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Solutio

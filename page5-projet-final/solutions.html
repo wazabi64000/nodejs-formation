@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet Final – Solutions</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Projet Final – Solutions</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="projet.html">Projet</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Solution Exercice 1 – MySQL</h2>
+    <pre><code>CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  age INT
+);</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 2 – Sequelize</h2>
+    <pre><code>const User = sequelize.define('User',{
+  name:{type: DataTypes.STRING, allowNull:false},
+  email:{type: DataTypes.STRING, allowNull:false, unique:true},
+  age: DataTypes.INTEGER
+});</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 3 – MongoDB</h2>
+    <pre><code>const userSchema = new mongoose.Schema({
+  name:{type:String, required:true},
+  email:{type:String, required:true, unique:true},
+  age:Number
+});
+const User = mongoose.model('User', userSchema);</code></pre>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 4 – CRUD</h2>
+    <p>Implémenter PUT/DELETE pour chaque DB et gérer les erreurs avec codes HTTP corrects.</p>
+  </section>
+
+  <section>
+    <h2>Solution Exercice 5 – Tests</h2>
+    <p>Vérifier GET/POST/PUT/DELETE sur MySQL, Sequelize et MongoDB avec Postman.</p>
+  </section>
+</main>
+</body>
+</html>

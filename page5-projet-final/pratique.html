@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5 – Pratique</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 5 – Pratique</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="projet.html">Projet</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>1. Installer MySQL et packages</h2>
+    <pre><code>npm install express mysql2 dotenv</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Configurer la connexion MySQL</h2>
+    <pre><code>// config/db.js
+import mysql from 'mysql2/promise';
+import 'dotenv/config';
+
+export const db = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+console.log('MySQL connecté');</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Créer model et controller</h2>
+    <pre><code>// models/user.model.js
+import { db } from '../config/db.js';
+
+export const getUsers = async () => {
+  const [rows] = await db.execute('SELECT * FROM users');
+  return rows;
+};
+
+// controllers/user.controller.js
+import { getUsers } from '../models/user.model.js';
+
+export const listUsers = async (req,res) => {
+  try{
+    const users = await getUsers();
+    res.json(users);
+  } catch(err){
+    res.status(500).json({error: err.message});
+  }
+};</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Créer routes Express</h2>
+    <pre><code>// routes/user.routes.js
+import express from 'express';
+import { listUsers } from '../controllers/user.controller.js';
+const router = express.Router();
+router.get('/users', listUsers);
+export default router;</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Lancer le serveur</h2>
+    <pre><code>// app.js
+import express from 'express';
+import userRoutes from './routes/user.routes.js';
+import 'dotenv/config';
+
+const app = express();
+app.use(express.json());
+app.use('/api', userRoutes);
+
+app.listen(process.env.PORT || 3000, ()=> console.log('Serveur lancé'));</code></pre>
+  </section>
+</main>
+</body>
+</html>

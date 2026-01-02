@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 – Théorie</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 4 – Théorie</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>CRUD – Les bases</h2>
+    <p>CRUD signifie Create, Read, Update, Delete. Ces opérations fondamentales permettent de manipuler les données de vos applications backend.</p>
+  </section>
+
+  <section>
+    <h2>Validation des données</h2>
+    <p>Avant de stocker les informations, il est essentiel de vérifier leur format, leur type et leur contenu pour éviter les erreurs et vulnérabilités.</p>
+  </section>
+
+  <section>
+    <h2>Gestion des erreurs</h2>
+    <p>Une API professionnelle doit renvoyer des codes HTTP précis : 200 pour OK, 201 pour création, 400 pour erreur client, 500 pour erreur serveur. Chaque erreur doit être explicite.</p>
+  </section>
+
+  <section>
+    <h2>Structuration des endpoints</h2>
+    <p>Les routes doivent être logiques et cohérentes : `/api/users` pour gérer les utilisateurs, `/api/posts` pour les publications, etc. Les controllers contiennent la logique, et les models interagissent avec la DB.</p>
+  </section>
+
+  <section>
+    <h2>Authentification et sécurité</h2>
+    <p>Il est recommandé d’utiliser des tokens JWT, la validation des entrées et la sécurisation des endpoints sensibles. Cela garantit que seules les requêtes légitimes sont traitées.</p>
+  </section>
+
+  <section>
+    <h2>Bonnes pratiques</h2>
+    <p>Organiser le code en dossiers `routes/`, `controllers/`, `models/`, `middlewares/`. Documenter les endpoints et tester régulièrement avec Postman.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Pro Learning | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles spécifiques au Dashboard pour compléter style.css */
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+        }
+
+        .progression-summary {
+            background: #1e293b;
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            border-color: #10b981;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .module-tag {
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .module-card h2 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .module-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .module-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .module-nav a {
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-main {
+            grid-column: span 2;
+            background: #10b981;
+            color: white !important;
+        }
+
+        .btn-main:hover { background: #059669; }
+
+        .btn-sub {
+            background: #334155;
+            color: #cbd5e1 !important;
+        }
+
+        .btn-sub:hover { background: #475569; }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-banner">
+        <h1>Node.js   Bootcamp</h1>
+        <p>Maîtrisez le Backend de A à Z avec l'ingénierie pédagogique par la pratique.</p>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="progression-summary">
+            <div>
+                <strong>Votre Progression Globale</strong>
+                <div style="width: 300px; height: 10px; background: #334155; border-radius: 10px; margin-top: 8px;">
+                    <div style="width: 20%; height: 100%; background: #10b981; border-radius: 10px;"></div>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <span style="font-size: 1.2rem; font-weight: bold; color: #10b981;">1 / 5 Modules</span><br>
+                <small>Prochaine étape : Core Modules</small>
+            </div>
+        </div>
+
+        <div class="module-grid">
+            
+            <article class="module-card">
+                <span class="module-tag">Démarrage</span>
+                <h2>01. Intro & ESM</h2>
+                <p>Installez votre environnement, découvrez le moteur V8 et maîtrisez le système de modules moderne (ESM).</p>
+                <div class="module-nav">
+                    <a href="page1-introduction-nodejs/index.html" class="btn-main">Lancer le Module</a>
+                    <a href="page1-introduction-nodejs/theorie.html" class="btn-sub">Théorie</a>
+                    <a href="page1-introduction-nodejs/exercices.html" class="btn-sub">Exercices</a>
+                </div>
+            </article>
+
+            <article class="module-card">
+                <span class="module-tag">Système</span>
+                <h2>02. Core & HTTP</h2>
+                <p>Manipulez les fichiers (FS) et construisez votre premier serveur HTTP sans aucun framework externe.</p>
+                <div class="module-nav">
+                    <a href="page2-node-core-http-express/index.html" class="btn-main">Accéder au cours</a>
+                    <a href="page2-node-core-http-express/theorie.html" class="btn-sub">Théorie</a>
+                    <a href="page2-node-core-http-express/exercices.html" class="btn-sub">Exercices</a>
+                </div>
+            </article>
+
+            <article class="module-card">
+                <span class="module-tag">Architecture</span>
+                <h2>03. Express.js MVC</h2>
+                <p>Apprenez à structurer des applications complexes en séparant les routes, les modèles et les contrôleurs.</p>
+                <div class="module-nav">
+                    <a href="page3-express-mvc/index.html" class="btn-main">Accéder au cours</a>
+                    <a href="page3-express-mvc/theorie.html" class="btn-sub">Théorie</a>
+                    <a href="page3-express-mvc/exercices.html" class="btn-sub">Exercices</a>
+                </div>
+            </article>
+
+            <article class="module-card">
+                <span class="module-tag">API Design</span>
+                <h2>04. Logique & API REST</h2>
+                <p>CRUD complet, validation de données et gestion d'erreurs professionnelle pour vos applications web.</p>
+                <div class="module-nav">
+                    <a href="page4-logique-backend-api/index.html" class="btn-main">Accéder au cours</a>
+                    <a href="page4-logique-backend-api/theorie.html" class="btn-sub">Théorie</a>
+                    <a href="page4-logique-backend-api/exercices.html" class="btn-sub">Exercices</a>
+                </div>
+            </article>
+
+            <article class="module-card">
+                <span class="module-tag">Certification</span>
+                <h2>05. Projet Final</h2>
+                <p>Réalisez de bout en bout l'API "PulseManager" : un cas pratique réel regroupant toutes vos compétences.</p>
+                <div class="module-nav">
+                    <a href="page5-projet-final/index.html" class="btn-main">Démarrer le Projet</a>
+                    <a href="page5-projet-final/projet.html" class="btn-sub">Briefing</a>
+                    <a href="page5-projet-final/solutions.html" class="btn-sub">Corrections</a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Plateforme Pédagogique Node.js | Générée en HTML/CSS/JS Pur | 2026</p>
+    </footer>
+
+</body>
+</html>

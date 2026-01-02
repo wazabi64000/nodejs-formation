@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 – Pratique</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 4 – Pratique</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>1. MySQL direct avec `mysql2/promise`</h2>
+    <pre><code>// config/db.js
+import mysql from 'mysql2/promise';
+import 'dotenv/config';
+
+export const db = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
+
+console.log('MySQL connecté');</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Sequelize ORM</h2>
+    <pre><code>// models/user.model.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/sequelize.js';
+
+const User = sequelize.define('User',{
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  age: DataTypes.INTEGER
+});
+
+export default User;</code></pre>
+  </section>
+
+  <section>
+    <h2>3. MongoDB & Mongoose</h2>
+    <pre><code>// models/user.model.js
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required:true },
+  email: { type: String, required:true, unique:true },
+  age: Number
+});
+
+export default mongoose.model('User', userSchema);</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Express Routes</h2>
+    <pre><code>// routes/user.routes.js
+import express from 'express';
+import { listUsers } from '../controllers/user.controller.js';
+const router = express.Router();
+
+router.get('/users', listUsers);
+router.post('/users', listUsers); // exemple POST
+
+export default router;</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Lancer le serveur</h2>
+    <pre><code>// app.js
+import express from 'express';
+import userRoutes from './routes/user.routes.js';
+import 'dotenv/config';
+
+const app = express();
+app.use(express.json());
+app.use('/api', userRoutes);
+
+app.listen(process.env.PORT || 3000, ()=> console.log('Serveur lancé'));</code></pre>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 – Pratique</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 2 – Pratique</h1>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>1. Créer un serveur HTTP simple</h2>
+    <pre><code>import http from 'http';
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Bonjour depuis Node Core HTTP!');
+});
+
+server.listen(3000, () => {
+  console.log('Serveur lancé sur http://localhost:3000');
+});</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Lire un fichier avec FS</h2>
+    <pre><code>import fs from 'fs';
+
+fs.readFile('./data.txt', 'utf-8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Chemins avec Path</h2>
+    <pre><code>import path from 'path';
+
+const filePath = path.join(process.cwd(), 'data.txt');
+console.log(filePath);</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Gestion des requêtes GET</h2>
+    <pre><code>import http from 'http';
+import url from 'url';
+
+const server = http.createServer((req, res) => {
+  const query = url.parse(req.url, true).query;
+  res.end('Paramètre: ' + query.name);
+});
+
+server.listen(3000);</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Gestion des requêtes POST</h2>
+    <pre><code>import http from 'http';
+
+const server = http.createServer((req, res) => {
+  if (req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      res.end('Données reçues: ' + body);
+    });
+  } else {
+    res.end('Envoyez une requête POST');
+  }
+});
+
+server.listen(3000);</code></pre>
+  </section>
+</main>
+</body>
+</html>

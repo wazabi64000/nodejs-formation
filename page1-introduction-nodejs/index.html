@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 – Introduction Node.js</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+  <h1>Module 1 : Introduction à Node.js</h1>
+</header>
+
+<!-- Barre de navigation standard -->
+<nav>
+  <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
+  <a href="pratique.html">Pratique</a> |
+  <a href="exercices.html">Exercices</a> |
+  <a href="solutions.html">Solutions</a> |
+  <a href="ressources.html">Ressources</a> |
+  <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
+</nav>
+
+<main>
+  <section>
+    <h2>Présentation du thème</h2>
+    <p>Dans ce premier module, vous allez découvrir Node.js, comprendre son fonctionnement et créer vos premiers scripts côté serveur.</p>
+  </section>
+
+  <section>
+    <h2>C’est quoi Node.js ?</h2>
+    <p>Node.js est un environnement d’exécution JavaScript côté serveur basé sur le moteur V8 de Google Chrome. Il permet d’exécuter du JavaScript hors du navigateur et d’interagir avec le système, les fichiers et le réseau.</p>
+  </section>
+
+  <section>
+    <h2>Pourquoi utiliser Node.js ?</h2>
+    <p>Node.js est conçu pour créer des applications performantes et scalables. Son architecture événementielle et non bloquante est idéale pour les API, les applications temps réel et les services web rapides.</p>
+  </section>
+
+  <section>
+    <h2>Comment ça fonctionne ?</h2>
+    <p>Node.js utilise le moteur V8 pour exécuter le JavaScript côté serveur. Il fournit des modules natifs pour gérer les fichiers, le réseau, HTTP et les processus. Vous pouvez également installer des modules tiers via NPM.</p>
+  </section>
+
+  <section>
+    <h2>Installation</h2>
+    <ol>
+      <li>Téléchargez Node.js depuis <a href="https://nodejs.org" target="_blank">nodejs.org</a>.</li>
+      <li>Vérifiez l'installation : <code>node -v</code> et <code>npm -v</code>.</li>
+      <li>Créez un dossier de projet et initialisez-le : <code>npm init -y</code>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Exemple avec <code>require</code> (CommonJS)</h2>
+    <pre><code>// fichier math.js
+function add(a, b) { return a + b; }
+module.exports = { add };
+
+// fichier app.js
+const { add } = require('./math.js');
+console.log(add(2, 3)); // 5</code></pre>
+  </section>
+
+  <section>
+    <h2>Exemple avec <code>import/export</code> (ESM)</h2>
+    <pre><code>// fichier math.mjs
+export function add(a, b) { return a + b; }
+
+// fichier app.mjs
+import { add } from './math.mjs';
+console.log(add(2, 3)); // 5</code></pre>
+    <p>ESM permet d’utiliser la syntaxe moderne <code>import/export</code> et facilite la modularité dans les projets Node.js récents.</p>
+  </section>
+
+  <section>
+    <h2>Objectifs pédagogiques</h2>
+    <ul>
+      <li>Comprendre ce qu’est Node.js et son fonctionnement</li>
+      <li>Installer Node.js et préparer l’environnement</li>
+      <li>Distinguer Require (CommonJS) et ESM</li>
+      <li>Exécuter des scripts simples côté serveur</li>
+      <li>Se familiariser avec les bonnes pratiques de modularité</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
