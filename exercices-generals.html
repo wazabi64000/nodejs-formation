@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50 Exercices Node.js ESM avec Solutions</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background-color: #f4f4f4; color: #333; }
+h1 { text-align: center; color: #007bff; }
+.exercice { background: white; border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.exercice h2 { color: #28a745; margin-top: 0; }
+.enonce { font-style: italic; color: #555; }
+.theme { font-weight: bold; color: #dc3545; }
+.solution { display: none; background: #f9f9f9; border-left: 4px solid #28a745; padding: 10px; margin-top: 10px; }
+.solution h3 { margin-top: 0; color: #28a745; }
+pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+code { background: #e9ecef; padding: 0.2em 0.4em; border-radius: 3px; display: block; white-space: pre-wrap; }
+nav { text-align: center; margin-bottom: 20px; }
+nav a { margin: 0 10px; text-decoration: none; color: #007bff; }
+.toggle-btn {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+</style>
+</head>
+<body>
+
+<h1>50 Exercices Node.js ESM : Montée en Compétence avec Solutions</h1>
+<nav>
+<a href="#fs">FS (1-10)</a> |
+<a href="#path">Path (11-15)</a> |
+<a href="#http">HTTP (16-25)</a> |
+<a href="#express">Express.js (26-50)</a>
+</nav>
+
+<script>
+function toggleSolution(btn) {
+    const solutionDiv = btn.nextElementSibling;
+    if (solutionDiv.style.display === 'none' || solutionDiv.style.display === '') {
+        solutionDiv.style.display = 'block';
+        btn.textContent = 'Masquer Solution';
+    } else {
+        solutionDiv.style.display = 'none';
+        btn.textContent = 'Afficher Solution';
+    }
+}
+</script>
+
+<!-- ================== MODULE FS ================== -->
+<section id="fs">
+<h2>Module FS</h2>
+
+<!-- Exercice 1 à 10 -->
+<div class="exercice">
+<h2>Exercice 1</h2>
+<p class="theme">FS : Lecture synchrone</p>
+<p class="enonce">Créez un fichier 'hello.txt' avec du texte et lisez-le synchroniquement.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+// Lecture synchronisée : le code attend la lecture avant de continuer
+try {
+    const data = fs.readFileSync('hello.txt', 'utf8');
+    console.log(data);
+} catch (err) {
+    console.error('Erreur lors de la lecture :', err);
+}
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 2</h2>
+<p class="theme">FS : Écriture synchrone</p>
+<p class="enonce">Créez 'salut.txt' et écrivez 'Bonjour Node.js !' de manière synchrone.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+// Écriture synchronisée
+fs.writeFileSync('salut.txt', 'Bonjour Node.js !', 'utf8');
+console.log('Fichier écrit avec succès');
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 3</h2>
+<p class="theme">FS : Lecture asynchrone</p>
+<p class="enonce">Lire 'hello.txt' de manière asynchrone et gérer les erreurs.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+// Lecture asynchrone
+fs.readFile('hello.txt', 'utf8', (err, data) => {
+    if (err) console.error('Erreur :', err);
+    else console.log(data);
+});
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 4</h2>
+<p class="theme">FS : Écriture asynchrone</p>
+<p class="enonce">Écrivez dans 'salut.txt' de manière asynchrone.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+// Écriture asynchrone
+fs.writeFile('salut.txt', 'Bonjour Node.js !', 'utf8', (err) => {
+    if (err) console.error('Erreur :', err);
+    else console.log('Écrit !');
+});
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 5</h2>
+<p class="theme">FS : Append synchronisé</p>
+<p class="enonce">Ajoutez du texte à un fichier existant de manière synchrone.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+// Ajout de texte à la fin
+fs.appendFileSync('salut.txt', '\nAjouté !', 'utf8');
+console.log('Texte ajouté avec succès');
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 6</h2>
+<p class="theme">FS : Suppression de fichier</p>
+<p class="enonce">Supprimez un fichier spécifique si existant.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+if (fs.existsSync('salut.txt')) {
+    fs.unlinkSync('salut.txt');
+    console.log('Fichier supprimé');
+} else {
+    console.log('Fichier non trouvé');
+}
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 7</h2>
+<p class="theme">FS : Création de dossier</p>
+<p class="enonce">Créez un dossier 'monDossier' synchroniquement.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+fs.mkdirSync('monDossier');
+console.log('Dossier créé');
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 8</h2>
+<p class="theme">FS : Lecture de dossier</p>
+<p class="enonce">Lisez le contenu d'un dossier et affichez les fichiers.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+const files = fs.readdirSync('.');
+console.log('Fichiers présents :', files);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 9</h2>
+<p class="theme">FS : Renommage de fichier</p>
+<p class="enonce">Renommez un fichier existant.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+fs.renameSync('salut.txt', 'bonjour.txt');
+console.log('Fichier renommé');
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 10</h2>
+<p class="theme">FS : Copie de fichier</p>
+<p class="enonce">Copiez un fichier vers un nouveau chemin.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import fs from 'fs';
+
+fs.copyFileSync('bonjour.txt', 'copie.txt');
+console.log('Fichier copié');
+</code></pre>
+</div>
+</div>
+
+</section>
+
+<!-- ================== MODULE PATH ================== -->
+<section id="path">
+<h2>Module Path</h2>
+
+<!-- Exercice 11 à 15 -->
+<div class="exercice">
+<h2>Exercice 11</h2>
+<p class="theme">Path : Joindre des chemins</p>
+<p class="enonce">Combinez 'dossier' et 'fichier.txt'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import path from 'path';
+
+console.log(path.join('dossier', 'fichier.txt'));
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 12</h2>
+<p class="theme">Path : Extension de fichier</p>
+<p class="enonce">Obtenez l'extension d'un fichier.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import path from 'path';
+
+console.log(path.extname('/chemin/fichier.js')); // .js
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 13</h2>
+<p class="theme">Path : Nom de base</p>
+<p class="enonce">Obtenez le nom du fichier sans extension.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import path from 'path';
+
+console.log(path.basename('/chemin/fichier.js', '.js')); // fichier
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 14</h2>
+<p class="theme">Path : Chemin absolu</p>
+<p class="enonce">Convertissez un chemin relatif en absolu.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import path from 'path';
+
+console.log(path.resolve('fichier.txt'));
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 15</h2>
+<p class="theme">Path : Normalisation</p>
+<p class="enonce">Normalisez un chemin contenant '../'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import path from 'path';
+
+console.log(path.normalize('/chemin/../fichier.js')); // /fichier.js
+</code></pre>
+</div>
+</div>
+
+</section>
+
+<!-- ================== MODULE HTTP ================== -->
+<section id="http">
+<h2>HTTP & Serveurs</h2>
+
+<!-- Exercice 16 à 25 -->
+<div class="exercice">
+<h2>Exercice 16</h2>
+<p class="theme">HTTP : Serveur basique</p>
+<p class="enonce">Créez un serveur HTTP répondant 'Hello World'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+// Création d'un serveur HTTP simple
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World');
+}).listen(3000);
+
+console.log('Serveur HTTP démarré sur http://localhost:3000');
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 17</h2>
+<p class="theme">HTTP : GET uniquement</p>
+<p class="enonce">Répondez uniquement aux requêtes GET.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    if (req.method === 'GET') {
+        res.writeHead(200, {'Content-Type':'text/plain'});
+        res.end('Hello GET');
+    } else {
+        res.statusCode = 405;
+        res.end('Méthode non supportée');
+    }
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<!-- ================== HTTP 18 à 25 ================== -->
+
+<div class="exercice">
+<h2>Exercice 18</h2>
+<p class="theme">HTTP : Servir fichier HTML</p>
+<p class="enonce">Servez un fichier HTML simple.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+import fs from 'fs';
+
+// Crée un serveur HTTP qui renvoie le contenu d'un fichier HTML
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    try {
+        const html = fs.readFileSync('index.html', 'utf8');
+        res.end(html);
+    } catch (err) {
+        res.statusCode = 500;
+        res.end('Erreur serveur');
+    }
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 19</h2>
+<p class="theme">HTTP : Routing simple</p>
+<p class="enonce">Créez '/' et '/about' avec réponses différentes.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    if (req.url === '/') res.end('Accueil');
+    else if (req.url === '/about') res.end('À propos');
+    else res.statusCode = 404, res.end('Page non trouvée');
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 20</h2>
+<p class="theme">HTTP : Status 404</p>
+<p class="enonce">Renvoie 404 pour URL inconnue.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    res.statusCode = 404;
+    res.end('Not Found');
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 21</h2>
+<p class="theme">HTTP : En-têtes personnalisés</p>
+<p class="enonce">Ajoutez un en-tête personnalisé à la réponse.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type':'text/plain', 'X-Powered-By':'Node.js'});
+    res.end('Hello avec header personnalisé');
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 22</h2>
+<p class="theme">HTTP : JSON Response</p>
+<p class="enonce">Retournez un objet JSON.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type':'application/json'});
+    const data = { message: 'Bonjour JSON' };
+    res.end(JSON.stringify(data));
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 23</h2>
+<p class="theme">HTTP : Redirection</p>
+<p class="enonce">Redirigez vers une autre URL.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    res.writeHead(302, {'Location':'/'});
+    res.end();
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 24</h2>
+<p class="theme">HTTP : POST Data</p>
+<p class="enonce">Recevez et affichez des données POST.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+http.createServer((req, res) => {
+    if (req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => body += chunk);
+        req.on('end', () => {
+            console.log('Données reçues :', body);
+            res.end('OK');
+        });
+    } else res.end('Envoyez un POST');
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 25</h2>
+<p class="theme">HTTP : Middleware simplifié</p>
+<p class="enonce">Ajoutez une fonction middleware pour logger les requêtes.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import http from 'http';
+
+function logger(req, res, next) {
+    console.log(`${req.method} ${req.url}`);
+    next();
+}
+
+http.createServer((req, res) => {
+    logger(req, res, () => {
+        res.end('Requête loggée');
+    });
+}).listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 26</h2>
+<p class="theme">Express : Serveur basique</p>
+<p class="enonce">Créez un serveur Express avec GET '/'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => res.send('Hello Express'));
+
+app.listen(3000, () => console.log('Serveur Express démarré sur http://localhost:3000'));
+</code></pre>
+</div>
+</div>
+
+<!-- ================== EXPRESS 27 à 50 ================== -->
+
+<div class="exercice">
+<h2>Exercice 27</h2>
+<p class="theme">Express : Route GET '/hello'</p>
+<p class="enonce">Ajoutez une route GET '/hello'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Route GET simple
+app.get('/hello', (req, res) => res.send('Bonjour !'));
+
+app.listen(3000, () => console.log('Serveur Express prêt'));
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 28</h2>
+<p class="theme">Express : Route POST '/data'</p>
+<p class="enonce">Créez une route POST '/data'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+// Route POST qui renvoie "OK"
+app.post('/data', (req, res) => res.send('OK'));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 29</h2>
+<p class="theme">Express : Middleware basique</p>
+<p class="enonce">Ajoutez un middleware qui log chaque requête.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Middleware pour logger
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
+app.get('/', (req, res) => res.send('Hello'));
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 30</h2>
+<p class="theme">Express : Paramètres de route</p>
+<p class="enonce">Créez une route '/user/:id' qui renvoie l'ID.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+app.get('/user/:id', (req, res) => {
+    res.send(`ID: ${req.params.id}`);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 31</h2>
+<p class="theme">Express : Query params</p>
+<p class="enonce">Gérez une query comme '/search?term=hello'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+app.get('/search', (req, res) => {
+    res.send(`Term: ${req.query.term}`);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+</section>
+
+<!-- ================== MODULE EXPRESS ================== -->
+<section id="express">
+<h2>Express.js</h2>
+
+<!-- Exercice 26 à 50 -->
+
+
+<!-- Les exercices 27 à 50 suivent le même modèle -->
+</section>
+
+
+
+<!-- ================== EXPRESS 32 à 50 ================== -->
+
+<div class="exercice">
+<h2>Exercice 32</h2>
+<p class="theme">Express : Body parser JSON</p>
+<p class="enonce">Utilisez express.json() pour parser les bodies JSON.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Middleware pour parser JSON
+app.use(express.json());
+
+app.post('/', (req, res) => {
+    // req.body contient maintenant le JSON envoyé
+    res.json(req.body);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 33</h2>
+<p class="theme">Express : Fichiers statiques</p>
+<p class="enonce">Servez un dossier 'public' avec des fichiers statiques.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Servir tous les fichiers du dossier "public" en statique
+app.use(express.static('public'));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 34</h2>
+<p class="theme">Express : 404 handler</p>
+<p class="enonce">Ajoutez un middleware pour gérer les 404.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+app.get('/', (req, res) => res.send('Home'));
+
+// Middleware pour 404
+app.use((req, res) => {
+    res.status(404).send('Not Found');
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 35</h2>
+<p class="theme">Express : Router</p>
+<p class="enonce">Créez un router pour '/api'.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+const router = express.Router();
+
+// Route dans le router
+router.get('/test', (req, res) => res.send('API Test'));
+
+// Attachement du router
+app.use('/api', router);
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 36</h2>
+<p class="theme">Express : Validation simple</p>
+<p class="enonce">Validez un body POST avec condition simple.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+app.post('/', (req, res) => {
+    if (!req.body.name) {
+        return res.status(400).send('Name required');
+    }
+    res.send('OK');
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 37</h2>
+<p class="theme">Express : CORS</p>
+<p class="enonce">Activez CORS pour les requêtes cross-origin.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import cors from 'cors';
+
+const app = express();
+
+// Middleware CORS
+app.use(cors());
+
+app.get('/', (req, res) => res.send('Hello'));
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 38</h2>
+<p class="theme">Express : Helmet</p>
+<p class="enonce">Ajoutez Helmet pour sécuriser les headers.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import helmet from 'helmet';
+
+const app = express();
+
+// Middleware Helmet pour la sécurité
+app.use(helmet());
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 39</h2>
+<p class="theme">Express : Auth middleware</p>
+<p class="enonce">Créez un middleware pour vérifier un token.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Middleware d'authentification
+const auth = (req, res, next) => {
+    if (req.headers.token === 'secret') next();
+    else res.status(401).send('Unauthorized');
+};
+
+app.get('/protected', auth, (req, res) => res.send('Protected'));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 40</h2>
+<p class="theme">Express : Upload fichier</p>
+<p class="enonce">Utilisez multer pour uploader un fichier.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import multer from 'multer';
+
+const app = express();
+const upload = multer({ dest: 'uploads/' });
+
+// Route pour upload d'un fichier
+app.post('/upload', upload.single('file'), (req, res) => res.send('Uploaded'));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 41</h2>
+<p class="theme">Express : Template engine</p>
+<p class="enonce">Installez EJS et rendez une vue simple.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+app.set('view engine', 'ejs');
+
+// Rendu d'une vue index.ejs
+app.get('/', (req, res) => res.render('index', { title: 'Hello' }));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 42</h2>
+<p class="theme">Express : Session</p>
+<p class="enonce">Gérez une session basique avec express-session.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import session from 'express-session';
+
+const app = express();
+
+app.use(session({
+    secret: 'key',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.get('/', (req, res) => {
+    req.session.views = (req.session.views || 0) + 1;
+    res.send(`Views: ${req.session.views}`);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 43</h2>
+<p class="theme">Express : Cookie</p>
+<p class="enonce">Set et get un cookie avec cookie-parser.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import cookieParser from 'cookie-parser';
+
+const app = express();
+app.use(cookieParser());
+
+app.get('/', (req, res) => {
+    res.cookie('name', 'value');
+    res.send(`Cookie: ${req.cookies.name}`);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 44</h2>
+<p class="theme">Express : Rate limiting</p>
+<p class="enonce">Ajoutez un rate limiter pour une route.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import rateLimit from 'express-rate-limit';
+
+const app = express();
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100
+});
+
+app.use(limiter);
+
+app.get('/', (req, res) => res.send('Hello'));
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 45</h2>
+<p class="theme">Express : JWT auth</p>
+<p class="enonce">Implémentez JWT pour une route protégée.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import jwt from 'jsonwebtoken';
+
+const app = express();
+const secret = 'key';
+app.use(express.json());
+
+// Route login pour générer le token
+app.post('/login', (req, res) => {
+    const token = jwt.sign({ user: 'id' }, secret);
+    res.json({ token });
+});
+
+// Middleware auth JWT
+const auth = (req, res, next) => {
+    try {
+        req.user = jwt.verify(req.headers.authorization, secret);
+        next();
+    } catch {
+        res.status(401).send('Invalid token');
+    }
+};
+
+app.get('/protected', auth, (req, res) => res.send('Protected'));
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 46</h2>
+<p class="theme">Express : Error handler</p>
+<p class="enonce">Middleware global pour erreurs.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+
+// Route qui déclenche une erreur
+app.get('/', (req, res, next) => next(new Error('Test')));
+
+// Middleware global pour gérer les erreurs
+app.use((err, req, res, next) => {
+    res.status(500).send('Erreur: ' + err.message);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 47</h2>
+<p class="theme">Express : WebSocket basique</p>
+<p class="enonce">Intégrez ws pour un chat simple.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import { WebSocketServer } from 'ws';
+
+const app = express();
+const server = app.listen(3000);
+const wss = new WebSocketServer({ server });
+
+wss.on('connection', ws => {
+    ws.on('message', msg => ws.send(`Echo: ${msg}`));
+});
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 48</h2>
+<p class="theme">Express : Intégration DB</p>
+<p class="enonce">Connectez à SQLite et exécutez une requête simple.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import sqlite3 from 'sqlite3';
+
+const db = new sqlite3.Database(':memory:');
+db.run('CREATE TABLE test (id INT)');
+
+const app = express();
+
+app.get('/', (req, res) => {
+    db.all('SELECT * FROM test', (err, rows) => res.json(rows));
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 49</h2>
+<p class="theme">Express : API RESTful</p>
+<p class="enonce">Créez une API CRUD pour une liste de tâches.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+let tasks = [];
+
+// GET all tasks
+app.get('/tasks', (req, res) => res.json(tasks));
+
+// POST create task
+app.post('/tasks', (req, res) => {
+    tasks.push(req.body);
+    res.status(201).json(req.body);
+});
+
+// PUT update task
+app.put('/tasks/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    tasks[id] = req.body;
+    res.json(req.body);
+});
+
+// DELETE task
+app.delete('/tasks/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    tasks.splice(id, 1);
+    res.sendStatus(204);
+});
+
+app.listen(3000);
+</code></pre>
+</div>
+</div>
+
+<div class="exercice">
+<h2>Exercice 50</h2>
+<p class="theme">Express : Déploiement basique</p>
+<p class="enonce">Préparez votre app pour le déploiement avec env vars.</p>
+<button class="toggle-btn" onclick="toggleSolution(this)">Afficher Solution</button>
+<div class="solution">
+<h3>Solution</h3>
+<pre><code>import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+const app = express();
+
+app.get('/', (req, res) => res.send('Ready for deploy'));
+
+app.listen(port, () => console.log(`Serveur lancé sur port ${port}`));
+</code></pre>
+</div>
+</div>
+
+</body>
+</html>
