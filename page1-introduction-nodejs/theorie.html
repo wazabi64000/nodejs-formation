@@ -11,9 +11,9 @@
   <h1>Module 1 – Théorie</h1>
 </header>
 
-<!-- Barre de navigation standard -->
 <nav>
   <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
   <a href="pratique.html">Pratique</a> |
   <a href="exercices.html">Exercices</a> |
   <a href="solutions.html">Solutions</a> |
@@ -24,38 +24,46 @@
 <main>
   <section>
     <h2>Node.js : C’est quoi ?</h2>
-    <p>Node.js est un environnement d’exécution JavaScript côté serveur construit sur le moteur V8 de Google Chrome. Il permet d’exécuter des scripts JavaScript en dehors du navigateur et d’interagir directement avec le système d’exploitation, le réseau et le système de fichiers.</p>
-    <p>Contrairement au JavaScript traditionnel côté client, Node.js est optimisé pour les applications serveur hautement performantes et scalable.</p>
+    <p>Node.js est comme une « cuisine » pour JavaScript : au lieu de fonctionner dans le navigateur (la salle à manger du client), il fonctionne côté serveur (la cuisine), où il peut préparer des données, communiquer avec le système d’exploitation et envoyer le résultat à l’utilisateur.</p>
+    <p>Construit sur le moteur V8 de Google Chrome, Node.js permet à JavaScript d’interagir directement avec le système de fichiers, le réseau et le processeur, ce qui était auparavant réservé aux langages serveur comme Java ou Python.</p>
+    <p>En résumé, Node.js transforme JavaScript en langage capable de gérer des serveurs, des fichiers et des bases de données, tout en restant rapide et léger.</p>
   </section>
 
   <section>
     <h2>Pourquoi utiliser Node.js ?</h2>
-    <p>Node.js est conçu pour des applications rapides et évolutives. Son architecture événementielle et non bloquante le rend particulièrement efficace pour gérer de nombreuses connexions simultanées, comme dans les API REST ou les applications temps réel.</p>
-    <p>De plus, utiliser JavaScript à la fois côté client et côté serveur simplifie le développement et la maintenance du code.</p>
+    <p>Node.js est conçu pour les applications rapides et capables de gérer beaucoup de trafic simultané. Imagine un restaurant très fréquenté : Node.js peut gérer de nombreux clients sans que la cuisine (le serveur) ne soit saturée, grâce à son système événementiel et non bloquant.</p>
+    <p>Autre avantage : utiliser le même langage (JavaScript) côté client et côté serveur simplifie le développement, réduit les erreurs et accélère la maintenance. C’est comme si le chef et les serveurs parlaient la même langue, rendant la coordination plus fluide.</p>
   </section>
 
   <section>
     <h2>Comment Node.js fonctionne ?</h2>
-    <p>Node.js repose sur le moteur V8 pour exécuter le JavaScript. Il fournit des modules natifs pour gérer le système de fichiers, les requêtes HTTP, le réseau et les processus. Les développeurs peuvent également installer des modules tiers via NPM (Node Package Manager).</p>
-    <p>L’événementiel et la boucle d’événements permettent à Node.js de traiter des opérations I/O sans bloquer le serveur, offrant ainsi de meilleures performances.</p>
+    <p>Node.js repose sur V8 pour exécuter le JavaScript et fournit des modules intégrés pour manipuler les fichiers, gérer le réseau, créer des serveurs HTTP et contrôler les processus.</p>
+    <p>Le cœur de Node.js est sa boucle d’événements (event loop). Plutôt que d’attendre qu’une tâche soit terminée avant de passer à la suivante, Node.js met les tâches longues (lecture de fichier, requête réseau) dans une « file d’attente » et continue à servir d’autres requêtes. C’est un peu comme un chef qui confie les tâches longues à un commis et continue à préparer d’autres plats.</p>
+    <p>Grâce à cette architecture, Node.js excelle dans les applications temps réel et les API avec beaucoup de connexions simultanées.</p>
   </section>
 
   <section>
     <h2>Modules CommonJS (Require)</h2>
-    <p>Traditionnellement, Node.js utilise CommonJS pour la modularité. Chaque fichier peut exporter des fonctions ou objets via <code>module.exports</code> et les importer via <code>require()</code>.</p>
-    <p>Cela permet de séparer le code en modules réutilisables, mais la syntaxe est différente de l’ESM moderne.</p>
+    <p>CommonJS est l’ancienne manière d’organiser le code Node.js. Chaque fichier peut exposer des fonctions ou des objets via <code>module.exports</code> et les importer avec <code>require()</code>.</p>
+    <p>Pense aux modules CommonJS comme des boîtes de LEGO : chaque boîte contient des pièces (fonctions ou objets) que tu peux assembler pour construire ton application. C’est pratique pour organiser le code, mais la syntaxe est un peu datée par rapport à ESM.</p>
   </section>
 
   <section>
     <h2>Modules ESM (Import/Export)</h2>
-    <p>ESM (ECMAScript Modules) est la syntaxe moderne recommandée pour Node.js. Elle utilise <code>export</code> pour exposer des fonctions ou objets et <code>import</code> pour les importer.</p>
-    <p>ESM est plus compatible avec le JavaScript côté client et facilite la modularité et le refactoring des projets Node.js récents.</p>
+    <p>ESM (ECMAScript Modules) est la méthode moderne pour modulariser Node.js. On utilise <code>export</code> pour partager des fonctions ou objets et <code>import</code> pour les récupérer.</p>
+    <p>Avec ESM, le code est plus clair et plus proche du JavaScript côté client. Imagine que chaque module est comme une application mobile avec des fonctionnalités bien définies que tu peux importer facilement sans te perdre dans le code.</p>
+    <p>Cette approche simplifie la maintenance et le refactoring, surtout dans les projets Node.js récents et complexes.</p>
   </section>
 
   <section>
     <h2>Bonnes pratiques et contexte professionnel</h2>
-    <p>Pour écrire du Node.js maintenable, il est conseillé d’organiser le code par modules, d’utiliser les variables d’environnement pour la configuration, et de documenter chaque fonction.</p>
-    <p>Node.js est largement utilisé par des entreprises comme Netflix, LinkedIn et Uber pour construire des applications serveur rapides et scalables. Maîtriser Node.js est un atout clé pour un développeur backend moderne.</p>
+    <p>Pour un code Node.js solide et maintenable :</p>
+    <ul>
+      <li>Organise le code par modules cohérents et réutilisables.</li>
+      <li>Utilise les variables d’environnement pour la configuration et éviter d’exposer des secrets.</li>
+      <li>Documente chaque fonction pour faciliter la compréhension et la maintenance.</li>
+    </ul>
+    <p>Node.js est utilisé par des géants comme Netflix, LinkedIn ou Uber pour construire des applications serveur rapides et scalables. Maîtriser Node.js équivaut à posséder une boîte à outils indispensable pour le développement backend moderne.</p>
   </section>
 </main>
 </body>

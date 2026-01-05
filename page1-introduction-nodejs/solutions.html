@@ -13,12 +13,14 @@
 
 <nav>
   <a href="index.html">Accueil</a> |
+  <a href="theorie.html">Théorie</a> |
   <a href="pratique.html">Pratique</a> |
   <a href="exercices.html">Exercices</a> |
   <a href="solutions.html">Solutions</a> |
   <a href="ressources.html">Ressources</a> |
   <a href="../index.html" style="font-weight:bold;">Retour au Dashboard</a>
 </nav>
+
 
 <main>
   <section>
@@ -27,7 +29,7 @@
   </section>
 
   <section>
-    <h2>Solution Exercice 2</h2>
+    <h2>Solution Exercice 2 – Module CommonJS</h2>
     <pre><code>// math.js
 function multiply(a, b) {
   return a * b;
@@ -41,7 +43,7 @@ console.log(multiply(3, 4)); // 12
   </section>
 
   <section>
-    <h2>Solution Exercice 3</h2>
+    <h2>Solution Exercice 3 – Module ESM</h2>
     <pre><code>// math.mjs
 export function multiply(a, b) {
   return a * b;
@@ -54,7 +56,7 @@ console.log(multiply(3, 4)); // 12
   </section>
 
   <section>
-    <h2>Solution Exercice 4</h2>
+    <h2>Solution Exercice 4 – Variables d’environnement</h2>
     <pre><code>// .env
 APP_NAME=NodeBootcamp
 
@@ -65,4 +67,23 @@ console.log(process.env.APP_NAME); // NodeBootcamp
   </section>
 
   <section>
-    <h2>Solutio
+    <h2>Solution Exercice 5 – Script combiné (add & multiply)</h2>
+    <pre><code>// math.js
+export function add(a, b) {
+  return a + b;
+}
+
+export function multiply(a, b) {
+  return a * b;
+}
+
+// app.mjs
+import { add, multiply } from './math.js';
+
+console.log("Addition : ", add(5, 7));       // 12
+console.log("Multiplication : ", multiply(5, 7)); // 35
+</code></pre>
+  </section>
+</main>
+</body>
+</html>
